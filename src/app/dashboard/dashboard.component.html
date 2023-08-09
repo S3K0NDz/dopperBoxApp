@@ -1,54 +1,46 @@
 <div class="container">
+    <br>
+
     <h1 style="text-align: center" id="titulo-registros">Registros Dopper {{this.loggedInUsername}}</h1>
 
+    
     <br>
     <div class="container">
         <button style="float: right;" class="btn btn-success" (click)="generateExcel()">Descargar Excel</button>
     </div>
 
-    
-       <div class="container">
-<button  style="float: right; margin-right: 2%;" type="button" class="btn btn-secondary" (click)="refresh()" >
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
-<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
-</svg>
-</button>
-</div>
+
+    <div class="container">
+        <button style="float: right; margin-right: 2%;" type="button" class="btn btn-secondary" (click)="refresh()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+                <path
+                    d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z">
+                </path>
+            </svg>
+        </button>
+    </div>
 
     <br>
     <br>
     <br>
 
-    <table class="table table-striped" style="margin: 0 auto;">
-        <thead>
-            <tr>
-                <th style="text-align: center;">ID</th>
-                <th style="text-align: center;">Valor</th>
-                <th style="text-align: center;">Fecha y Hora</th>
-                <th style="text-align: center;">Dopper</th>
-                <th style="text-align: center;">Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="table-body">
-            <tr *ngIf="registros.length === 0"
-                style="background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px;">
-                <td colspan="5" style="text-align: center;">No hay registros disponibles.</td>
-            </tr>
-
-            <tr *ngFor="let registro of registros">
-                <td style="text-align: center;">{{ registro.id }}</td>
-                <td style="text-align: center;">{{ registro.valor }}</td>
-                <td style="text-align: center;">{{ registro.fecha_hora }}</td>
-                <td style="text-align: center;">{{ registro.device }}</td>
-                <td style="text-align: center;">
-                    <button class="btn btn-primary btn-sm" (click)="openUpdateModal(registro)"
-                        style="margin-right: 2%;">Actualizar</button>
-                    <button class="btn btn-danger btn-sm" (click)="deleteRegistro(registro.id)">Eliminar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="card-columns">
+        <div class="card" *ngFor="let registro of registros">
+            <div class="card-body">
+                <h5 class="card-title">{{ registro.id }}</h5>
+                <p class="card-text">Valor: {{ registro.valor }}</p>
+                <p class="card-text">Fecha y Hora: {{ registro.fecha_hora }}</p>
+                <p class="card-text">Dopper: {{ registro.device }}</p>
+                <hr>
+                <button class="btn btn-primary btn-sm" style="float: right;" (click)="openUpdateModal(registro)">Actualizar</button>
+                <button class="btn btn-danger btn-sm" style="margin-right: 1%; float: right;" (click)="deleteRegistro(registro.id)">Eliminar</button>
+                <br>
+                
+            </div>
+        </div>
+    </div>
 </div>
 
 

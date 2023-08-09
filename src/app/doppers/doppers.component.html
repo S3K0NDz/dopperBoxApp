@@ -1,4 +1,5 @@
 <div class="container">
+  <br>
   <h1 style="text-align: center" id="titulo-registros">Dispositivos Dopper de {{this.loggedInUsername}}</h1>
 
   <br>
@@ -8,27 +9,14 @@
   <br>
   <br>
   <br>
-  <table class="table table-striped" style="width: 70%; margin: 0 auto;">
-    <thead>
-      <tr>
-        <th style="text-align: center;">Dopper</th>
-        <th style="text-align: center;">Acciones</th>
-      </tr>
-    </thead>
-    <tbody id="table-body">
-      <tr *ngFor="let registro of registros">
-        <td style="text-align: center;">{{ registro }}</td>
-        <td style="text-align: center;">
-          <button class="btn btn-danger btn-sm" (click)="deleteDevice(registro)">Eliminar</button>
-        </td>
-      </tr>
-
-      <tr *ngIf="registros.length === 0"
-        style="background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px;">
-        <td colspan="5" style="text-align: center;">No hay registros disponibles.</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="card-columns">
+    <div class="card" *ngFor="let registro of registros">
+        <div class="card-body d-flex justify-content-between align-items-center">
+            <h5 class="card-title">{{ registro }}</h5>
+            <button class="btn btn-danger btn-sm" (click)="deleteDevice(registro)">Eliminar</button>
+        </div>
+    </div>
+</div>
 
   <div class="modal" [ngClass]="{ 'd-block': showModal, 'd-none': !showModal }">
     <div class="modal-dialog">
