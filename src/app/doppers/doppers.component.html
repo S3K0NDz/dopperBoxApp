@@ -1,0 +1,52 @@
+<div class="container">
+  <h1 style="text-align: center" id="titulo-registros">Dispositivos Dopper de {{this.loggedInUsername}}</h1>
+
+  <br>
+  <div class="container">
+    <button style="float: right;" class="btn btn-success" (click)="showModal = true">Añadir dopper</button>
+  </div>
+  <br>
+  <br>
+  <br>
+  <table class="table table-striped" style="width: 70%; margin: 0 auto;">
+    <thead>
+      <tr>
+        <th style="text-align: center;">Dopper</th>
+        <th style="text-align: center;">Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+      <tr *ngFor="let registro of registros">
+        <td style="text-align: center;">{{ registro }}</td>
+        <td style="text-align: center;">
+          <button class="btn btn-danger btn-sm" (click)="deleteDevice(registro)">Eliminar</button>
+        </td>
+      </tr>
+
+      <tr *ngIf="registros.length === 0"
+        style="background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px;">
+        <td colspan="5" style="text-align: center;">No hay registros disponibles.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal" [ngClass]="{ 'd-block': showModal, 'd-none': !showModal }">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Agregar nuevo dopper</h5>
+          <button type="button" class="close" (click)="showModal = false">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" [(ngModel)]="nuevoDopperNombre" class="form-control" placeholder="Nombre dopper">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="showModal = false">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="agregarDopper()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
